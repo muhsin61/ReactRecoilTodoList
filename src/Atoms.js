@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export const todoListState = atom({
     key: "todoListState",
-    default: [{text:"başvuru",isActive:true},{text:"kod",isActive:true}]
+    default: []
 });
 
 export const buttons = atom({
