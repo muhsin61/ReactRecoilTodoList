@@ -40,7 +40,7 @@ function App() {
         <button onClick={() => { setButtons("Active") }}>Active</button>
         <button onClick={() => { setButtons("Complated") }}>Deleted</button>
         <form>
-          <input type="text" onSubmit={handleSubmit} onChange={(e) => setInput(e.target.value)}></input>
+          <input type="text" onSubmit={handleSubmit} value={todoInput} onChange={(e) => setInput(e.target.value)}></input>
           <input type="submit" onClick={handleSubmit}></input>
         </form>
         <div>
@@ -56,7 +56,7 @@ function App() {
         <button onClick={() => { setButtons("Active") }}>Active</button>
         <button onClick={() => { setButtons("Complated") }}>Complated</button>
         <form>
-          <input type="text" onSubmit={handleSubmit} onChange={(e) => setInput(e.target.value)}></input>
+          <input type="text" onSubmit={handleSubmit} value={todoInput} onChange={(e) => setInput(e.target.value)}></input>
           <input type="submit" onClick={handleSubmit}></input>
         </form>
         <div>

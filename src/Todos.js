@@ -10,7 +10,8 @@ export default function Todos(props) {
     const handleClick = (e) => {
         let deneme = []
         let test = AllTodos.forEach((item) => {
-            if (item.text !== props.todos) {
+            console.log(item)
+            if (item !== props.todos) {
                 deneme.push(item)
                 //console.log(item)
             }
