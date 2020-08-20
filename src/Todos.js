@@ -1,31 +1,42 @@
 import React from "react";
 import "./App.css";
 import { useRecoilState } from "recoil";
-import { todoListState } from "./Atoms.js"
+import { todoListState } from "./Atoms.js";
 
 
 
-export default function Todos(props){
+export default function Todos(props) {
     const [AllTodos, setTodos] = useRecoilState(todoListState);
     const handleClick = (e) => {
-        //alert(props.todos)
         let deneme = []
-        //let test = AllTodos.splice(AllTodos.indexof(props), 1);
-        let test = AllTodos.forEach((item)=>{
-            if(item.text !== props.todos){
-                console.log("item: ")
+        let test = AllTodos.forEach((item) => {
+            if (item.text !== props.todos) {
                 deneme.push(item)
-                console.log(deneme)
+                //console.log(item)
             }
         });
         setTodos([...deneme])
     }
+    if (props) {
+        console.log(props.todos)
+        if (props.todos.isActive == true) {
+            return (
+                <div className="todo">
+                    <input type="checkbox" defaultChecked={!props.todos.isActive} onChange={(e)=> console.log(e.checked + e.target.value)} />
+                    <h1>{props.todos.text}</h1>
+                    <p onClick={handleClick}>Delete</p>
+                </div>
+            )
+        } else {
+            return (
+                <div className="todo">
+                    <input type="checkbox" defaultChecked={props.todos.isActive} onChange={(e)=> console.log(e.checked + e.target.value )} />
+                    <h1><s>{props.todos.text}</s></h1>
+                    <p onClick={handleClick}>Delete</p>
+                </div>
+            )
+        }
+    }
 
-    return(
-        <div className="todo">
-            <h1>{props.todos}</h1>
-            <p onClick={handleClick}>Delete</p>
-        </div>
-    )
 }
 
