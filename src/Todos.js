@@ -23,7 +23,7 @@ export default function Todos(props) {
         if (props.todos.isActive == true) {
             return (
                 <div className="todo">
-                    <input type="checkbox" defaultChecked={!props.todos.isActive} onChange={(e)=> console.log(e.checked + e.target.value)} />
+                    <input type="checkbox" defaultChecked={!props.todos.isActive} onChange={(e) => console.log(e.checked + e.target.value)} />
                     <h1>{props.todos.text}</h1>
                     <p onClick={handleClick}>Delete</p>
                 </div>
@@ -31,7 +31,7 @@ export default function Todos(props) {
         } else {
             return (
                 <div className="todo">
-                    <input type="checkbox" defaultChecked={props.todos.isActive} onChange={(e)=> console.log(e.checked + e.target.value )} />
+                    <input type="checkbox" defaultChecked={props.todos.isActive} onChange={(e) => console.log(e.checked + e.target.value)} />
                     <h1><s>{props.todos.text}</s></h1>
                     <p onClick={handleClick}>Delete</p>
                 </div>
