@@ -20,9 +20,7 @@ function App() {
 
   const Complated = AllTodos.map((item) => {
     if (item.isActive) {
-      return (
-        <Todos key={item.text} todos={item} ></Todos>
-      )
+      return (<Todos key={item.text} todos={item} ></Todos>)
     }
   });
 
@@ -71,10 +69,11 @@ function App() {
         <button onClick={() => { setButtons("All") }}>All</button>
         <button onClick={() => { setButtons("Active") }}>Active</button>
         <button onClick={() => { setButtons("Complated") }}>Complated</button>
-
-        <p>{myLength}</p>
-        <h5>{myButtons}</h5>
-
+        {AllTodos.map((item) => {
+          if (!item.isActive) {
+            return (<Todos key={item.text} todos={item} ></Todos>)
+          }
+        })}
       </div>
     )
   }

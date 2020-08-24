@@ -3,8 +3,6 @@ import "./App.css";
 import { useRecoilState } from "recoil";
 import { todoListState } from "./Atoms.js";
 
-
-
 export default function Todos(props) {
     const [AllTodos, setTodos] = useRecoilState(todoListState);
     const handleClick = (e) => {
@@ -12,29 +10,27 @@ export default function Todos(props) {
         let test = AllTodos.forEach((item) => {
             console.log(item)
             if (item !== props.todos) {
-                //console.log(item)
                 deneme.push(item)
             }
         });
-        setTodos([...deneme])
+        setTodos([...deneme]);
     }
     const isActive = () => {
-        console.log("test");
-        let deneme = [];
+        let newItem = { text: props.todos.text, isActive: !props.todos.isActive };
+        let deneme = []
         let test = AllTodos.forEach((item) => {
             console.log(item);
-            let newItem = item;
-            if (newItem == props.todos) {
-                console.log(item.isActive == false);
-                item.isActive === false;
+            if (item === props.todos) {
+                deneme.push(newItem)
+            } else {
+                deneme.push(item);
             }
-            deneme.push(newItem);
         });
         setTodos([...deneme]);
     }
     if (props) {
         console.log(props.todos)
-        if (props.todos.isActive == true) {
+        if (props.todos.isActive) {
             return (
                 <div className="todo">
                     <input type="checkbox" defaultChecked={!props.todos.isActive} onClick={isActive} />
@@ -45,7 +41,7 @@ export default function Todos(props) {
         } else {
             return (
                 <div className="todo">
-                    <input type="checkbox" defaultChecked={props.todos.isActive} onClick={isActive} />
+                    <input type="checkbox" defaultChecked={!props.todos.isActive} onClick={isActive} />
                     <h1><s>{props.todos.text}</s></h1>
                     <p onClick={handleClick}>Delete</p>
                 </div>
