@@ -23,7 +23,13 @@ function App() {
       return (<Todos key={item.text} todos={item} ></Todos>)
     }
   });
-
+  const Buttons = (
+    <div>
+      <button onClick={() => { setButtons("All") }}>All</button>
+      <button onClick={() => { setButtons("Active") }}>Active</button>
+      <button onClick={() => { setButtons("Complated") }}>Deleted</button>
+    </div>
+  );
   const handleSubmit = (e) => {
     console.log(e.target.value)
     e.preventDefault()
@@ -31,16 +37,18 @@ function App() {
     console.log(AllTodos);
     setInput("");
   }
+  const Inputs = (
+    <form>
+      <input type="text" onSubmit={handleSubmit} value={todoInput} onChange={(e) => setInput(e.target.value)}></input>
+      <input type="submit" onClick={handleSubmit}></input>
+    </form>
+  );
+
   if (myButtons === "All") {
     return (
       <div className="App">
-        <button onClick={() => { setButtons("All") }}>All</button>
-        <button onClick={() => { setButtons("Active") }}>Active</button>
-        <button onClick={() => { setButtons("Complated") }}>Deleted</button>
-        <form>
-          <input type="text" onSubmit={handleSubmit} value={todoInput} onChange={(e) => setInput(e.target.value)}></input>
-          <input type="submit" onClick={handleSubmit}></input>
-        </form>
+        {Buttons}
+        {Inputs}
         <div>
           {Alltodo}
         </div>
@@ -50,13 +58,8 @@ function App() {
   if (myButtons === "Active") {
     return (
       <div className="App">
-        <button onClick={() => { setButtons("All") }}>All</button>
-        <button onClick={() => { setButtons("Active") }}>Active</button>
-        <button onClick={() => { setButtons("Complated") }}>Complated</button>
-        <form>
-          <input type="text" onSubmit={handleSubmit} value={todoInput} onChange={(e) => setInput(e.target.value)}></input>
-          <input type="submit" onClick={handleSubmit}></input>
-        </form>
+        {Buttons}
+        {Inputs}
         <div>
           {Complated}
         </div>
@@ -66,9 +69,7 @@ function App() {
   if (myButtons === "Complated") {
     return (
       <div className="App">
-        <button onClick={() => { setButtons("All") }}>All</button>
-        <button onClick={() => { setButtons("Active") }}>Active</button>
-        <button onClick={() => { setButtons("Complated") }}>Complated</button>
+        {Buttons}
         {AllTodos.map((item) => {
           if (!item.isActive) {
             return (<Todos key={item.text} todos={item} ></Todos>)
