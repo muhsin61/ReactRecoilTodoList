@@ -25,9 +25,9 @@ function App() {
   });
   const Buttons = (
     <div>
-      <button onClick={() => { setButtons("All") }}>All</button>
+      <button className="firstBtn" onClick={() => { setButtons("All") }}>All</button>
       <button onClick={() => { setButtons("Active") }}>Active</button>
-      <button onClick={() => { setButtons("Complated") }}>Deleted</button>
+      <button className="lastBtn" onClick={() => { setButtons("Complated") }}>Deleted</button>
     </div>
   );
   const handleSubmit = (e) => {
@@ -40,7 +40,7 @@ function App() {
   const Inputs = (
     <form>
       <input type="text" onSubmit={handleSubmit} value={todoInput} onChange={(e) => setInput(e.target.value)}></input>
-      <input type="submit" onClick={handleSubmit}></input>
+      <input type="submit" onClick={handleSubmit} value="Add"></input>
     </form>
   );
 
