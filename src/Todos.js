@@ -14,6 +14,7 @@ export default function Todos(props) {
             }
         });
         setTodos([...deneme]);
+        localStorage.setItem("todos",JSON.stringify([...deneme]))
     }
     const isActive = () => {
         let newItem = { text: props.todos.text, isActive: !props.todos.isActive };
@@ -27,6 +28,7 @@ export default function Todos(props) {
             }
         });
         setTodos([...deneme]);
+        localStorage.setItem("todos",JSON.stringify([...deneme]))
     }
     if (props) {
         console.log(props.todos)

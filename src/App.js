@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import './App.css';
 import { useRecoilValue, useRecoilState } from "recoil";
 import { todoListState } from "./Atoms.js"
@@ -13,6 +13,11 @@ function App() {
   const [myButtons, setButtons] = useRecoilState(buttons);
   const [AllTodos, setTodos] = useRecoilState(todoListState);
   const [todoInput, setInput] = useState("");
+
+  useEffect(() => {
+    console.log("parse")
+    setTodos(JSON.parse(localStorage.getItem('todos')))
+  }, [])
 
   const Alltodo = AllTodos.map((item) => {
     return (<Todos key={item.text} todos={item} ></Todos>)
@@ -33,9 +38,14 @@ function App() {
   const handleSubmit = (e) => {
     console.log(e.target.value)
     e.preventDefault()
-    setTodos([...AllTodos, { text: todoInput, isActive: true }]);
-    console.log(AllTodos);
-    setInput("");
+    if(todoInput){
+      setTodos([...AllTodos, { text: todoInput, isActive: true }]);
+      console.log(AllTodos);
+      setInput("");
+      localStorage.setItem("todos",JSON.stringify([...AllTodos, { text: todoInput, isActive: true }]))
+    }else{
+      alert("please write something")
+    }
   }
   const Inputs = (
     <form>
